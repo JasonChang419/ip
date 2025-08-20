@@ -13,6 +13,7 @@ public class JohnChatbot {
             System.out.println(text);
             text = input.nextLine();
         }
-
+        input.close();
+        System.out.println(goodbye);
     }
 }
