@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class JohnChatbot {
     public static void main(String[] args) {
+        taskList myList = new taskList();
         Scanner input = new Scanner(System.in);
         String goodbye = "Farewell. I look forward to our next meeting.";
         System.out.println("Hello. I am John Chatbot.\n"
@@ -10,7 +11,11 @@ public class JohnChatbot {
                 + "\n");
         String text = input.nextLine();
         while (!Objects.equals(text, "bye")) {
-            System.out.println(text);
+            if (Objects.equals(text, "list")) {
+                myList.display();
+            } else {
+                myList.add(text);
+            }
             text = input.nextLine();
         }
         input.close();
