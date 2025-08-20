@@ -14,8 +14,16 @@ public class taskList {
 
     public void display() {
         for (int i = 0; list[i] != null; i++) {
-            System.out.println(i + "." + list[i]);
+            System.out.println((i + 1) + "." + list[i].toString());
         }
+    }
+
+    public void mark(int index) {
+        list[index].mark();
+    }
+
+    public void unmark(int index) {
+        list[index].unmark();
     }
 
 }
