@@ -33,6 +33,11 @@ public class JohnChatbot {
                         break;
                     }
 
+                    case "delete": {
+                        myList.delete(Integer.parseInt(words[1]) - 1);
+                        break;
+                    }
+
                     case "todo": {
                         if (words.length == 1) {
                             throw new ChatbotException("Sorry, the description of a todo cannot be empty.");

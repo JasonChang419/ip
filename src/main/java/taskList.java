@@ -16,6 +16,13 @@ public class taskList {
         System.out.println("There are " + list.size() + " items on the list.");
     }
 
+    public void delete(int index) {
+        System.out.println("Understood. Removed the following task:\n" +
+                "     " + list.get(index));
+        list.remove(index);
+        System.out.println("There are now " + list.size() + " items on the list.");
+    }
+
     public void display() {
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + "." + list.get(i).toString());
@@ -37,5 +44,6 @@ public class taskList {
             list.get(index).unmark();
         }
     }
+
 
 }
