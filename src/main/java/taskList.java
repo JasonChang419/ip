@@ -7,9 +7,11 @@ public class taskList {
     }
 
     public void add(task input) {
-        System.out.println("added: " + input);
+        System.out.println("Understood. Added the following task: \n" +
+                "     " + input);
         list[count] = input;
         count += 1;
+        System.out.println("There are " + count + " items on the list.");
     }
 
     public void display() {

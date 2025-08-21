@@ -13,20 +13,42 @@ public class JohnChatbot {
         while (!Objects.equals(text, "bye")) {
             String[] words = text.split(" ", 2);
             switch (words[0]) {
-                case "list":
+                case "list": {
                     myList.display();
                     break;
-                case "mark":
+                }
+
+                case "mark": {
                     myList.mark(Integer.parseInt(words[1]) - 1);
                     break;
-                case "unmark":
+                }
+
+                case "unmark": {
                     myList.unmark(Integer.parseInt(words[1]) - 1);
                     break;
-                case "todo":
+                }
+
+                case "todo": {
                     myList.add(new ToDoTask(text));
                     break;
-                case "deadline":
+                }
 
+                case "deadline": {
+                    String[] substring = text.split("/by" , 2);
+                    String description = substring[0];
+                    String date = substring[1];
+                    myList.add(new DeadlineTask(description, date));
+                    break;
+                }
+
+                case "event": {
+                    String[] substring = text.split("/", 3);
+                    String description = substring[0];
+                    String start = substring[1].substring(5);
+                    String end = substring[2].substring(3);
+                    myList.add(new EventTask(description, start, end));
+                    break;
+                }
                 default:
                     myList.add(new task(text));
                     break;
