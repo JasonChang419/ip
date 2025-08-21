@@ -1,13 +1,13 @@
 public class taskList {
     static int count = 0;
-    private task[] list;
+    private final task[] list;
 
     public taskList() {
         this.list = new task[100];
     }
 
     public void add(task input) {
-        System.out.println("Understood. Added the following task: \n" +
+        System.out.println("Understood. Added the following task:\n" +
                 "     " + input);
         list[count] = input;
         count += 1;
