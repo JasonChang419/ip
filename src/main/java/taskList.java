@@ -6,9 +6,9 @@ public class taskList {
         this.list = new task[100];
     }
 
-    public void add(String input) {
+    public void add(task input) {
         System.out.println("added: " + input);
-        list[count] = new task(input);
+        list[count] = input;
         count += 1;
     }
 

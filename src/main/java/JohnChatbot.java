@@ -11,7 +11,7 @@ public class JohnChatbot {
                 + "\n");
         String text = input.nextLine();
         while (!Objects.equals(text, "bye")) {
-            String[] words = text.split(" ");
+            String[] words = text.split(" ", 2);
             switch (words[0]) {
                 case "list":
                     myList.display();
@@ -22,8 +22,13 @@ public class JohnChatbot {
                 case "unmark":
                     myList.unmark(Integer.parseInt(words[1]) - 1);
                     break;
+                case "todo":
+                    myList.add(new ToDoTask(text));
+                    break;
+                case "deadline":
+
                 default:
-                    myList.add(text);
+                    myList.add(new task(text));
                     break;
             }
             text = input.nextLine();
