@@ -1,5 +1,5 @@
 public class ToDoTask extends task{
-    public ToDoTask(String name) {
+    public ToDoTask(String name) throws ChatbotException {
         super(name);
     }
 

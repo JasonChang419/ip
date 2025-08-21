@@ -9,14 +9,11 @@ public class JohnChatbot {
         System.out.println("Hello. I am John Chatbot.\n"
                 + "How can I help you?\n"
                 + "\n");
-        String text = input.nextLine();
+        String text = input.nextLine().trim();
         while (!Objects.equals(text, "bye")) {
             try {
                 String[] words = text.split(" ", 2);
                 switch (words[0]) {
-                    case "" : {
-                        throw new ChatbotException("Entry cannot be empty");
-                    }
                     case "list": {
                         myList.display();
                         break;
@@ -33,8 +30,12 @@ public class JohnChatbot {
                     }
 
                     case "todo": {
-                        myList.add(new ToDoTask(text));
-                        break;
+                        if (words.length == 1) {
+                            throw new ChatbotException("Description of a todo cannot be empty");
+                        } else {
+                            myList.add(new ToDoTask(words[1]));
+                            break;
+                        }
                     }
 
                     case "deadline": {
