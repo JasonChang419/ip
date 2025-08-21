@@ -65,7 +65,7 @@ public class JohnChatbot {
                             throw new ChatbotException("Sorry, the description of an event cannot be empty.");
                         } else {
                             String[] substring = words[1].split("/", 3);
-                            if (substring.length != 3) {
+                            if (substring.length != 3) { //ensure that both a start and end time exists
                                 throw new ChatbotException("Start or end is missing");
                             } else {
                                 String description = substring[0];
