@@ -54,8 +54,7 @@ public class JohnChatbot {
                         break;
                     }
                     default:
-                        myList.add(new task(text));
-                        break;
+                        throw new ChatbotException("I'm afraid I do not understand what that means.");
                 }
                 text = input.nextLine();
             } catch (ChatbotException e) {

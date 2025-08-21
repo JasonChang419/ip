@@ -20,12 +20,20 @@ public class taskList {
         }
     }
 
-    public void mark(int index) {
-        list[index].mark();
+    public void mark(int index) throws ChatbotException{
+        if (index >= count || index < 0) {
+            throw new ChatbotException("That entry does not exist.");
+        } else {
+            list[index].mark();
+        }
     }
 
-    public void unmark(int index) {
-        list[index].unmark();
+    public void unmark(int index) throws ChatbotException{
+        if (index >= count || index < 0) {
+            throw new ChatbotException("That entry does not exist.");
+        } else {
+            list[index].unmark();
+        }
     }
 
 }
