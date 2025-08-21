@@ -2,7 +2,7 @@ public class EventTask extends task{
     String start;
     String end;
 
-    public EventTask(String name, String start, String end) throws ChatbotException {
+    public EventTask(String name, String start, String end) {
         super(name);
         this.start = start;
         this.end = end;

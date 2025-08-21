@@ -4,10 +4,7 @@ public class task {
     private final String name;
     private boolean done;
 
-    public task (String name) throws ChatbotException{
-        if (Objects.equals(name, "")) {
-            throw new ChatbotException("Task description cannot be empty");
-        }
+    public task (String name){
         this.name = name;
         this.done = false;
     }
