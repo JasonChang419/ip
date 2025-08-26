@@ -1,23 +1,21 @@
-import java.util.Objects;
-
-public class task {
+public abstract class Task {
     private final String name;
     private boolean done;
 
-    public task (String name){
+    public Task(String name){
         this.name = name;
         this.done = false;
     }
 
     public void mark() {
         this.done = true;
-        System.out.println("Nice! I've marked this task as done:");
+        System.out.println("Nice! I've marked this Task as done:");
         System.out.println(this.toString());
     }
 
     public void unmark() {
         this.done = false;
-        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("OK, I've marked this Task as not done yet:");
         System.out.println(this.toString());
     }
 
@@ -29,6 +27,16 @@ public class task {
             return "[ ] " + name;
         }
     }
+
+    public boolean isDone() {
+        return this.done;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public abstract String toSave();
 
 
 }
