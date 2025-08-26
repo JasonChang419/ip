@@ -1,4 +1,0 @@
-T | 0 | thing1
-T | 0 | thing2
-T | 0 | thing3
-T | 0 | return book  |  Sunday

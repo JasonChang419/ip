@@ -1,7 +1,11 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class TaskList {
     private final ArrayList<Task> list;
@@ -53,17 +57,57 @@ public class TaskList {
         try {
             FileWriter writer = new FileWriter(path);
             if (!save.exists()) {
+                System.out.println("Creating new save.");
                 save.createNewFile();
             }
-            for (int i = 0; i < list.size(); i++) {
-                writer.write(list.get(i).toSave()
-                +System.lineSeparator());
+            for (Task task : list) {
+                writer.write(task.toSave()
+                        + System.lineSeparator());
             }
             writer.close();
         } catch (IOException e) {
-            throw new RuntimeException("Something went wrong.");
+            throw new RuntimeException(e);
         }
         System.out.println("Save complete");
+    }
+
+    public void loadFromFile(File save) throws ChatbotException {
+        if (save.exists()) {
+            System.out.println("Saved list detected.\n" +
+                    "Loading from save." + System.lineSeparator());
+            try {
+                Scanner saveFile = new Scanner(save);
+                while (saveFile.hasNext()) {
+                    String[] taskSave = saveFile.nextLine().split(" \\| ");
+                    boolean isMarked = Objects.equals(taskSave[1], "1");
+                    switch(taskSave[0]) {
+                        case "T": {
+                            String desc = taskSave[2];
+                            list.add(new ToDoTask(desc));
+                            break;
+                        }
+                        case "D": {
+                            String desc = taskSave[2];
+                            String deadline = taskSave[3];
+                            list.add(new DeadlineTask(desc, deadline));
+                            break;
+                        }
+                        case "E": {
+                            String desc = taskSave[2];
+                            String start = taskSave[3];
+                            String end = taskSave[4];
+                            list.add(new EventTask(desc, start, end));
+                            break;
+                        }
+                    }
+                    if (isMarked) {
+                        list.get(list.size() - 1).mark();
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 

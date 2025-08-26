@@ -23,7 +23,7 @@ public class EventTask extends Task {
         } else {
             completeStatus = "0";
         }
-        return "T" + space +  completeStatus
+        return "E" + space +  completeStatus
                 + space + super.getName()
                 + space + this.start
                 + space + this.end;

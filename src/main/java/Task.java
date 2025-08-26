@@ -1,6 +1,7 @@
 public abstract class Task {
     private final String name;
     private boolean done;
+    private static boolean systemOn = false;
 
     public Task(String name){
         this.name = name;
@@ -9,8 +10,10 @@ public abstract class Task {
 
     public void mark() {
         this.done = true;
-        System.out.println("Nice! I've marked this Task as done:");
-        System.out.println(this.toString());
+        if (systemOn) {
+            System.out.println("Nice! I've marked this Task as done:");
+            System.out.println(this.toString());
+        }
     }
 
     public void unmark() {
@@ -35,6 +38,10 @@ public abstract class Task {
     public String getName() {
         return this.name;
     }
+
+    public static void SystemOn() {
+        systemOn = true;
+     }
 
     public abstract String toSave();
 

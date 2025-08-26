@@ -3,13 +3,19 @@ import java.util.Scanner;
 import java.io.File;
 
 public class JohnChatbot {
-
-
-
-
     public static void main(String[] args) {
         TaskList tasks = new TaskList();
+
+        try {
+            tasks.loadFromFile(new File("./save.txt"));
+        } catch (ChatbotException e) {
+            throw new RuntimeException(e);
+        }
+
+        Task.SystemOn();
+
         Scanner input = new Scanner(System.in);
+
         String goodbye = "Farewell. I look forward to our next meeting.";
         System.out.println("Hello. I am John Chatbot, the chatbot.\n"
                 + "How can I help you?\n"

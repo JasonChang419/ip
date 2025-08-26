@@ -20,7 +20,7 @@ public class DeadlineTask extends Task {
         } else {
             completeStatus = "0";
         }
-        return "T" + space +  completeStatus
+        return "D" + space +  completeStatus
                 + space + super.getName()
                 + space + this.deadline;
     }
