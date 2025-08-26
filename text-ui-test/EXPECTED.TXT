@@ -1,8 +1,8 @@
-Hello. I am John Chatbot.
+Hello. I am John Chatbot, the chatbot.
 How can I help you?
 
 
-Understood. Added the following task:
-     [D] [ ] deadline do homework  (By: no idea :-p)
+Understood. Added the following Task:
+     [D] [ ] do homework  (By: no idea :-p)
 There are 1 items on the list.
 Farewell. I look forward to our next meeting.
