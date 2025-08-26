@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
