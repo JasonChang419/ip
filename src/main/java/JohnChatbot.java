@@ -98,6 +98,7 @@ public class JohnChatbot {
             }
         }
         input.close();
+        tasks.saveToFile();
         System.out.println(goodbye);
     }
 }

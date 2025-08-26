@@ -1,4 +1,7 @@
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
 
 public class TaskList {
     private final ArrayList<Task> list;
@@ -42,6 +45,25 @@ public class TaskList {
         } else {
             list.get(index).unmark();
         }
+    }
+
+    public void saveToFile() {
+        String path = "./save.txt";
+        File save = new File(path);
+        try {
+            FileWriter writer = new FileWriter(path);
+            if (!save.exists()) {
+                save.createNewFile();
+            }
+            for (int i = 0; i < list.size(); i++) {
+                writer.write(list.get(i).toSave()
+                +System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException("Something went wrong.");
+        }
+        System.out.println("Save complete");
     }
 
 
