@@ -62,7 +62,7 @@ public class JohnChatbot {
                         if (inputArray.length == 1) {  //ensure that a description exists
                             throw new ChatbotException("Sorry, the description of a deadline cannot be empty.");
                         } else {
-                            String[] substring = inputArray[1].split("/by" , 2);
+                            String[] substring = inputArray[1].split("/by " , 2);
                             if (substring.length == 1) { //ensure a deadline exists
                                 throw new ChatbotException("Please enter a deadline.");
                             } else {
