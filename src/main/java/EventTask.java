@@ -1,17 +1,33 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class EventTask extends Task {
-    String start;
-    String end;
+    LocalDateTime start;
+    LocalDateTime end;
 
     public EventTask(String name, String start, String end) {
         super(name);
-        this.start = start;
-        this.end = end;
+        start = start.trim();
+        end = end.trim();
+        if (!Task.systemOn) {
+            this.start = LocalDateTime.parse(start);
+            this.end = LocalDateTime.parse(end);
+        } else {
+            this.start = LocalDateTime.parse(start,
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            this.end = LocalDateTime.parse(end,
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        }
+
     }
 
     @Override
     public String toString() {
-        return "[E] " + super.toString() + " (from: " + start
-                + " to: " + end + ")";
+        return "[E] " + super.toString() + " (from: " +
+                start.format(DateTimeFormatter.ofPattern("MMM d yyyy h.mma"))
+                + " to: " +
+                end.format(DateTimeFormatter.ofPattern("MMM d yyyy h.mma"))
+                + ")";
     }
 
     @Override

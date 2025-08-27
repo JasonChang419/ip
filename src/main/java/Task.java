@@ -1,7 +1,7 @@
 public abstract class Task {
     private final String name;
     private boolean done;
-    private static boolean systemOn = false;
+    public static boolean systemOn = false;
 
     public Task(String name){
         this.name = name;

@@ -6,7 +6,6 @@ public class DeadlineTask extends Task {
 
     public DeadlineTask(String name, String deadline) {
         super(name);
-        System.out.println(deadline);
         this.deadline = LocalDate.parse(deadline);
     }
 
