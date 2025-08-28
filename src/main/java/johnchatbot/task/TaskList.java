@@ -2,13 +2,7 @@ package johnchatbot.task;
 
 import johnchatbot.exception.ChatbotException;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Objects;
-import java.util.Scanner;
 
 public class TaskList {
     private final ArrayList<Task> list;
