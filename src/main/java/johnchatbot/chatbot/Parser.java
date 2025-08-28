@@ -1,5 +1,13 @@
+package johnchatbot.chatbot;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import johnchatbot.exception.ChatbotException;
+import johnchatbot.task.EventTask;
+import johnchatbot.task.TaskList;
+import johnchatbot.task.ToDoTask;
+import johnchatbot.task.DeadlineTask;
+
 
 public class Parser {
     TaskList tasks;

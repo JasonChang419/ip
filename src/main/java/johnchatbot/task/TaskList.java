@@ -1,3 +1,7 @@
+package johnchatbot.task;
+
+import johnchatbot.exception.ChatbotException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +50,7 @@ public class TaskList {
         }
     }
 
-    public void mark(int index) throws ChatbotException{
+    public void mark(int index) throws ChatbotException {
         if (index >= list.size() || index < 0) {
             throw new ChatbotException("That entry does not exist.");
         } else {

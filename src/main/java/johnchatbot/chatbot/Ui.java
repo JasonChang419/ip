@@ -1,3 +1,6 @@
+package johnchatbot.chatbot;
+import johnchatbot.task.TaskList;
+
 import java.util.Objects;
 import java.util.Scanner;
 

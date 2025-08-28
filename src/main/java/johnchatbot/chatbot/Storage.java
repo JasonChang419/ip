@@ -1,3 +1,7 @@
+package johnchatbot.chatbot;
+import johnchatbot.exception.ChatbotException;
+import johnchatbot.task.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,7 +17,7 @@ public class Storage {
     }
 
     public void saveToFile() {
-        String path = "./save.txt";
+        String path = "save/save.txt";
         File save = new File(path);
         try {
             FileWriter writer = new FileWriter(path);

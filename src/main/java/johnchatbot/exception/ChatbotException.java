@@ -1,3 +1,5 @@
+package johnchatbot.exception;
+
 public class ChatbotException extends Exception {
 
     public ChatbotException(String message) {
