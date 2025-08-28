@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'checkstyle'
 }
 
 repositories {
@@ -28,14 +29,18 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("johnchatbot.chatbot.JohnChatbot")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "johnchatbot"
     archiveClassifier = null
 }
 
 run{
     standardInput = System.in
+}
+
+checkstyle {
+    toolVersion = '11.0.0'
 }
