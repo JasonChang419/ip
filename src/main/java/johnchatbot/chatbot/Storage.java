@@ -20,8 +20,7 @@ public class Storage {
         this.taskList = taskList;
     }
 
-    public void saveToFile() {
-        String path = "save/save.txt";
+    public void saveToFile(String path) {
         File save = new File(path);
         try {
             FileWriter writer = new FileWriter(path);

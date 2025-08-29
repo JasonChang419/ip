@@ -26,7 +26,7 @@ public class Ui {
             text = input.nextLine();
         }
         input.close();
-        storage.saveToFile();
+        storage.saveToFile("save/save.txt");
         System.out.println(GOODBYE_MESSAGE);
     }
 }

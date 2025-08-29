@@ -60,5 +60,9 @@ public class TaskList {
         }
     }
 
+    public Task getTask(int index) {
+        return this.list.get(index);
+    }
+
 
 }

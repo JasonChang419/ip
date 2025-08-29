@@ -7,6 +7,7 @@ import johnchatbot.task.EventTask;
 import johnchatbot.task.TaskList;
 import johnchatbot.task.ToDoTask;
 import johnchatbot.task.DeadlineTask;
+import johnchatbot.task.Task;
 
 
 public class Parser {
@@ -16,6 +17,7 @@ public class Parser {
     }
 
     public void parse(String text) {
+        Task.SystemOn();
         try {
             String[] inputArray = text.split(" ", 2);
             switch (inputArray[0]) {
