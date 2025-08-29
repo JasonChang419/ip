@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a task that has a description and a deadline.
  */
 public class DeadlineTask extends Task {
-    LocalDate deadline;
+    private final LocalDate deadline;
 
     /**
      * Creates a deadline task, which has a description and a deadline.
@@ -27,8 +27,8 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return "[D] " + super.toString() + " (By: " +
-                deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D] " + super.toString() + " (By: "
+                + deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     /**
@@ -45,7 +45,7 @@ public class DeadlineTask extends Task {
         } else {
             completeStatus = "0";
         }
-        return "D" + space +  completeStatus
+        return "D" + space + completeStatus
                 + space + super.getName()
                 + space + this.deadline;
     }

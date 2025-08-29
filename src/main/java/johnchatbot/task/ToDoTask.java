@@ -37,7 +37,7 @@ public class ToDoTask extends Task {
         } else {
             completeStatus = "0";
         }
-        return "T" + space +  completeStatus
+        return "T" + space + completeStatus
                 + space + super.getName();
     }
 }

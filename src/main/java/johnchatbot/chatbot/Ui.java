@@ -1,29 +1,37 @@
 package johnchatbot.chatbot;
-import johnchatbot.task.TaskList;
 
 import java.util.Objects;
 import java.util.Scanner;
+
+import johnchatbot.task.TaskList;
+
+
 
 /**
  * Represents the interface which the user interacts with,
  * handling the inputs received.
  */
 public class Ui {
-    Scanner input = new Scanner(System.in);
-    final String GOODBYE_MESSAGE = "Farewell. I look forward to our next meeting.";
-    TaskList tasks;
-    Storage storage;
+    static final String GOODBYE_MESSAGE = "Farewell. I look forward to our next meeting.";
+    private final Scanner input = new Scanner(System.in);
+    private final TaskList tasks;
+    private final Storage storage;
 
+    /**
+     * Creates a UI instance for users to interact with.
+     * @param tasks The list of tasks that the chatbot handles.
+     * @param storage Storage object for saving the task list.
+     */
     public Ui(TaskList tasks, Storage storage) {
         this.tasks = tasks;
         this.storage = storage;
     }
+
     /**
      * Method for running the chatbot. Handles the incoming
      * input from the user and passes them as arguments
      * to the parser for processing.
      */
-
     public void run() {
         System.out.println("Hello. I am John Chatbot, the chatbot.\n"
                 + "How can I help you?\n"
