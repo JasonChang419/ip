@@ -35,6 +35,8 @@ application {
 shadowJar {
     archiveBaseName = "johnchatbot"
     archiveClassifier = null
+    archiveFileName = "johnchatbot.jar"
+    destinationDirectory = file(".");
 }
 
 run{
