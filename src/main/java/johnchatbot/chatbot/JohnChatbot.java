@@ -1,8 +1,9 @@
 package johnchatbot.chatbot;
+
 import java.io.File;
-import johnchatbot.exception.ChatbotException;
-import johnchatbot.task.TaskList;
+
 import johnchatbot.task.Task;
+import johnchatbot.task.TaskList;
 
 /**
  * The main class representing the chatbot as a whole
@@ -15,12 +16,12 @@ public class JohnChatbot {
      *
      * @param args Command-line arguments which are not used by the chatbot
      */
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         TaskList tasks = new TaskList();
         Storage storage = new Storage(tasks);
         Ui ui = new Ui(tasks, storage);
         storage.loadFromFile(new File("save/save.txt"));
-        Task.SystemOn();
+        Task.setSystemOn();
         ui.run();
     }
 }

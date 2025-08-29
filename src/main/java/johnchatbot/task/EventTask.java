@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
  * and an end time.
  */
 public class EventTask extends Task {
-    LocalDateTime start;
-    LocalDateTime end;
+    private final LocalDateTime start;
+    private final LocalDateTime end;
 
     /**
      * Creates an event task, which has a description, a start time,
@@ -24,7 +24,7 @@ public class EventTask extends Task {
         super(name);
         start = start.trim();
         end = end.trim();
-        if (!Task.systemOn) {
+        if (!Task.isSystemOn()) {
             this.start = LocalDateTime.parse(start);
             this.end = LocalDateTime.parse(end);
         } else {
@@ -42,10 +42,10 @@ public class EventTask extends Task {
      */
     @Override
     public String toString() {
-        return "[E] " + super.toString() + " (from: " +
-                start.format(DateTimeFormatter.ofPattern("MMM d yyyy h.mma"))
-                + " to: " +
-                end.format(DateTimeFormatter.ofPattern("MMM d yyyy h.mma"))
+        return "[E] " + super.toString() + " (from: "
+                + start.format(DateTimeFormatter.ofPattern("MMM d yyyy h.mma"))
+                + " to: "
+                + end.format(DateTimeFormatter.ofPattern("MMM d yyyy h.mma"))
                 + ")";
     }
 
@@ -63,7 +63,7 @@ public class EventTask extends Task {
         } else {
             completeStatus = "0";
         }
-        return "E" + space +  completeStatus
+        return "E" + space + completeStatus
                 + space + super.getName()
                 + space + this.start
                 + space + this.end;

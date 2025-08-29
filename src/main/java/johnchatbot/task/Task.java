@@ -6,11 +6,15 @@ package johnchatbot.task;
  */
 
 public abstract class Task {
+    private static boolean systemOn = false;
     private final String name;
     private boolean done;
-    public static boolean systemOn = false;
 
-    public Task(String name){
+    /**
+     * Creates a task
+     * @param name Description or name of the task
+     */
+    public Task(String name) {
         this.name = name;
         this.done = false;
     }
@@ -63,9 +67,13 @@ public abstract class Task {
      * systemOn needs to be set to true to start printing
      * statements again.
      */
-    public static void SystemOn() {
+    public static void setSystemOn() {
         systemOn = true;
-     }
+    }
+
+    public static boolean isSystemOn() {
+        return systemOn;
+    }
 
     /**
      * Provides a string representation of the task

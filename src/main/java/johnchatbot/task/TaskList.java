@@ -1,8 +1,9 @@
 package johnchatbot.task;
 
+import java.util.ArrayList;
+
 import johnchatbot.exception.ChatbotException;
 
-import java.util.ArrayList;
 
 
 /**
@@ -23,8 +24,8 @@ public class TaskList {
      * @param input Task to be added.
      */
     public void add(Task input) {
-        System.out.println("Understood. Added the following Task:\n" +
-                "     " + input);
+        System.out.println("Understood. Added the following Task:\n"
+                + "     " + input);
         list.add(input);
         System.out.println("There are " + list.size() + " items on the list.");
     }
@@ -56,8 +57,8 @@ public class TaskList {
      * @param index Index of task to be deleted.
      */
     public void delete(int index) {
-        System.out.println("Understood. Removed the following Task:\n" +
-                "     " + list.get(index));
+        System.out.println("Understood. Removed the following Task:\n"
+                + "     " + list.get(index));
         list.remove(index);
         System.out.println("There are now " + list.size() + " items on the list.");
     }
@@ -88,7 +89,7 @@ public class TaskList {
      * Marks the task at the given index as not done.
      * @param index Index of task to be unmarked.
      */
-    public void unmark(int index) throws ChatbotException{
+    public void unmark(int index) throws ChatbotException {
         if (index >= list.size() || index < 0) {
             throw new ChatbotException("That entry does not exist.");
         } else {
