@@ -3,10 +3,23 @@ package johnchatbot.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a task that has a description, a start time,
+ * and an end time.
+ */
 public class EventTask extends Task {
     LocalDateTime start;
     LocalDateTime end;
 
+    /**
+     * Creates an event task, which has a description, a start time,
+     * and an end time.
+     * @param name Description or name of the task
+     * @param start When the event is to start, should be in
+     *                 the form YYYY-MM-DD HHmm.
+     * @param end When the evend is to end, should be in
+     *            the form YYYY-MM-DD HHmm.
+     */
     public EventTask(String name, String start, String end) {
         super(name);
         start = start.trim();
@@ -23,6 +36,10 @@ public class EventTask extends Task {
 
     }
 
+    /**
+     * Provides a string representation of the task
+     * that is specific to an event task.
+     */
     @Override
     public String toString() {
         return "[E] " + super.toString() + " (from: " +
@@ -32,6 +49,11 @@ public class EventTask extends Task {
                 + ")";
     }
 
+    /**
+     * Provides a string representation of the task
+     * when saving to a file that is specific to an
+     * event task.
+     */
     @Override
     public String toSave() {
         String space = " | ";

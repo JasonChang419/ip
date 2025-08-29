@@ -4,6 +4,10 @@ import johnchatbot.task.TaskList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Represents the interface which the user interacts with,
+ * handling the inputs received.
+ */
 public class Ui {
     Scanner input = new Scanner(System.in);
     final String GOODBYE_MESSAGE = "Farewell. I look forward to our next meeting.";
@@ -14,6 +18,11 @@ public class Ui {
         this.tasks = tasks;
         this.storage = storage;
     }
+    /**
+     * Method for running the chatbot. Handles the incoming
+     * input from the user and passes them as arguments
+     * to the parser for processing.
+     */
 
     public void run() {
         System.out.println("Hello. I am John Chatbot, the chatbot.\n"

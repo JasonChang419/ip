@@ -9,13 +9,31 @@ import johnchatbot.task.ToDoTask;
 import johnchatbot.task.DeadlineTask;
 import johnchatbot.task.Task;
 
-
+/**
+ * Represents the text parser which recognizes specific
+ * inputs from the user to carry out various commands
+ */
 public class Parser {
     TaskList tasks;
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * This method is how the chatbot parses string inputs entered
+     * into the chatbot.
+     * Currently, supports the following commands:
+     * -todo {description}: adds a task with a brief description/name
+     * -deadline {/by YYYY-MM-DD}: adds a task with a dated deadline
+     * -event {/from YYYY-MM-DD HHmm /to YYYY-MM-DD HHmm}: adds a task with
+     *      a starting and ending date and time
+     * -mark {index}: marks the task at the given index as done
+     * -unmark {index}: marks the task at the given index as not done
+     * -delete {index}: removes the task at the given index
+     * -list: lists all tasks currently on the task list
+     *
+     * @param text String that is inputted by the user to be parsed
+     */
     public void parse(String text) {
         Task.SystemOn();
         try {

@@ -1,5 +1,4 @@
 package johnchatbot.chatbot;
-import johnchatbot.exception.ChatbotException;
 import johnchatbot.task.ToDoTask;
 import johnchatbot.task.DeadlineTask;
 import johnchatbot.task.EventTask;
@@ -13,12 +12,25 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Represents the storage for the chatbot which
+ * carries out saving and loading processes.
+ */
 public class Storage {
     TaskList taskList;
 
     public Storage(TaskList taskList) {
         this.taskList = taskList;
     }
+
+    /**
+     * Method for saving the current list of tasks to the specified
+     * path. The method will attempt to save the task list to the
+     * file specified by the path, or it will create a new file
+     * if it does not already exist.
+     *
+     * @param path the relative path to the file to save the task list to
+     */
 
     public void saveToFile(String path) {
         File save = new File(path);
@@ -39,7 +51,14 @@ public class Storage {
         System.out.println("Save complete");
     }
 
-    public void loadFromFile(File save) throws ChatbotException {
+
+    /**
+     * Method for loading from a save file.
+     * If a save file does not exist, it does nothing.
+     *
+     * @param save File object containing the path to the save file
+     */
+    public void loadFromFile(File save) {
         if (save.exists()) {
             System.out.println("Saved list detected.\n" +
                     "Loading from save." + System.lineSeparator());
