@@ -30,6 +30,7 @@ public class Parser {
      * -unmark {index}: marks the task at the given index as not done
      * -delete {index}: removes the task at the given index
      * -list: lists all tasks currently on the task list
+     * -find {keyword}: displays all tasks that contain the specified keyword
      *
      * @param text String that is inputted by the user to be parsed
      */
@@ -107,6 +108,18 @@ public class Parser {
                 }
 
             }
+
+            case "find": {
+                if (inputArray.length == 1) {
+                    throw new ChatbotException("Please enter a keyword to search for.");
+                } else {
+                    String keyword = text.substring(5);
+                    tasks.findTasks(keyword);
+                }
+                break;
+
+            }
+
             default:
                 throw new ChatbotException("I'm afraid I do not understand what that means.");
             }

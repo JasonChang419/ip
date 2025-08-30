@@ -105,5 +105,27 @@ public class TaskList {
         return this.list.get(index);
     }
 
+    /**
+     * Searches the task list for all tasks that contain
+     * the specified keyword.
+     * @param keyword Keyword to search for in task names.
+     */
+    public void findTasks(String keyword) {
+        System.out.println("Here are the tasks that contain that keyword: ");
+        int count = 0;
+        for (int i = 0; i < list.size(); i++) {
+            Task current = list.get(i);
+            String name = current.getName();
+            if (name.contains(keyword)) {
+                System.out.println((i + 1) + "." + current.toString());
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println("Unfortunately, there are no tasks "
+                    + "that contain that keyword.");
+        }
+    }
+
 
 }
