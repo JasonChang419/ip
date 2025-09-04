@@ -1,6 +1,7 @@
 package johnchatbot.chatbot;
 
 import java.io.File;
+import java.util.Objects;
 
 import johnchatbot.task.Task;
 import johnchatbot.task.TaskList;
@@ -12,6 +13,7 @@ import johnchatbot.task.TaskList;
  */
 
 public class JohnChatbot {
+    static final String GOODBYE_MESSAGE = "Farewell. I look forward to our next meeting.";
     TaskList tasks;
     Storage storage;
     Ui ui;
@@ -28,8 +30,9 @@ public class JohnChatbot {
 
 
     public String getResponse(String input) {
-        if (input == "bye") {
-            return "'";
+        if (Objects.equals(input, "bye")) {
+            String saveMessage  = storage.saveToFile("save/save.txt");
+            return(saveMessage + " \n" + GOODBYE_MESSAGE);
         }
         return parser.parse(input);
     }

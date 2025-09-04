@@ -1,5 +1,6 @@
 package johnchatbot.gui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +9,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import johnchatbot.chatbot.JohnChatbot;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
+
+import java.util.Objects;
 
 /**
  * Controller for the main GUI.
@@ -31,6 +36,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hello. I am John Chatbot, the chatbot.\n"
+                        + "How can I help you?\n"
+                        + "\n", dukeImage)
+        );
     }
 
     /** Injects the Duke instance */
@@ -50,6 +60,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        if (Objects.equals(input, "bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(2)); // 5-second pause
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
+        }
         userInput.clear();
     }
 }
