@@ -5,8 +5,9 @@ public class TaskListStub extends TaskList {
 
 
     @Override
-    public void add(Task task) {
+    public String add(Task task) {
         this.task = task;
+        return this.task.toString();
     }
 
     @Override
