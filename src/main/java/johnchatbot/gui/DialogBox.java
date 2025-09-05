@@ -23,6 +23,8 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private Label name;
 
     private DialogBox(String text, Image img) {
         try {
@@ -48,13 +50,48 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+    private void changeDialogStyle(String commandType) {
+        switch(commandType) {
+        case "todo":
+            dialog.getStyleClass().add("add-label");
+            break;
+        case "deadline":
+            dialog.getStyleClass().add("add-label");
+            break;
+        case "event":
+            dialog.getStyleClass().add("add-label");
+            break;
+        case "mark":
+            dialog.getStyleClass().add("marked-label");
+            break;
+        case "unmark":
+            dialog.getStyleClass().add("marked-label");
+            break;
+        case "delete":
+            dialog.getStyleClass().add("delete-label");
+            break;
+        case "list":
+            dialog.getStyleClass().add("list-label");
+            break;
+        case "find":
+            dialog.getStyleClass().add("find-label");
+            break;
+        default:
+            // Do nothing
+        }
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getUserDialog(String text, Image img) {
+        DialogBox dialogue = new DialogBox(text, img);
+        dialogue.name.setVisible(false);
+        return dialogue;
+    }
+
+    public static DialogBox getDukeDialog(String text, Image img, String commandType) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.name.setVisible(true);
+        db.changeDialogStyle(commandType);
         return db;
     }
 }

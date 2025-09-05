@@ -39,7 +39,7 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog("Hello. I am John Chatbot, the chatbot.\n"
                         + "How can I help you?\n"
-                        + "\n", dukeImage)
+                        + "\n", dukeImage, "")
         );
     }
 
@@ -56,9 +56,10 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = johnChatbot.getResponse(input);
+        String commandType = johnChatbot.getCommandType();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, dukeImage, commandType)
         );
         if (Objects.equals(input, "bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(2)); // 5-second pause

@@ -37,6 +37,10 @@ public class JohnChatbot {
         return parser.parse(input);
     }
 
+    public String getCommandType() {
+        return this.parser.getCommandType();
+    }
+
 
     /**
      * The main method for running the chatbot

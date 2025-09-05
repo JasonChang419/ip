@@ -13,6 +13,7 @@ import johnchatbot.task.ToDoTask;
  */
 public class Parser {
     private final TaskList tasks;
+    private String commandType;
 
     public Parser(TaskList tasks) {
         this.tasks = tasks;
@@ -38,7 +39,8 @@ public class Parser {
         Task.setSystemOn();
         try {
             String[] inputArray = text.split(" ", 2);
-            switch (inputArray[0]) {
+            this.commandType = inputArray[0];
+            switch (commandType) {
             case "": {
                 throw new ChatbotException("Please enter something.");
             }
@@ -118,6 +120,15 @@ public class Parser {
             return e.getMessage();
         }
 
+    }
+
+    /**
+     * This method returns the first word from the latest
+     * input that represents the type of command
+     */
+
+    public String getCommandType() {
+        return this.commandType;
     }
 
 

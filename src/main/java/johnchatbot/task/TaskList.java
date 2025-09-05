@@ -116,7 +116,7 @@ public class TaskList {
      */
     public String findTasks(String keyword) {
         StringBuilder output = new StringBuilder();
-        output.append("Here are the tasks that contain that keyword: ");
+        output.append("Here are the tasks that contain that keyword: \n");
         int count = 0;
         for (int i = 0; i < list.size(); i++) {
             Task current = list.get(i);
