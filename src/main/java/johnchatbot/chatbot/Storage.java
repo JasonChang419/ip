@@ -33,13 +33,13 @@ public class Storage {
      * @param path the relative path to the file to save the task list to
      */
 
-    public void saveToFile(String path) {
+    public String saveToFile(String path) {
         File save = new File(path);
         try {
             FileWriter writer = new FileWriter(path);
             if (!save.exists()) {
-                System.out.println("Creating new save.");
                 save.createNewFile();
+                return ("Creating new save.");
             }
             for (Task task : taskList.toArray()) {
                 writer.write(task.toSave()
@@ -49,7 +49,7 @@ public class Storage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Save complete");
+        return("Save complete");
     }
 
 
@@ -59,9 +59,10 @@ public class Storage {
      *
      * @param save File object containing the path to the save file
      */
-    public void loadFromFile(File save) {
+    public String loadFromFile(File save) {
         if (save.exists()) {
-            System.out.println("Saved list detected.\n"
+            StringBuilder output = new StringBuilder();
+            output.append("Saved list detected.\n"
                     + "Loading from save." + System.lineSeparator());
             try {
                 Scanner saveFile = new Scanner(save);
@@ -99,9 +100,9 @@ public class Storage {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
+            return output.toString();
         }
+        return "";
     }
-
-
 
 }

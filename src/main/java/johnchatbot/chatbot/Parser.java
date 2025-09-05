@@ -13,6 +13,7 @@ import johnchatbot.task.ToDoTask;
  */
 public class Parser {
     private final TaskList tasks;
+    private String commandType;
 
     public Parser(TaskList tasks) {
         this.tasks = tasks;
@@ -34,41 +35,37 @@ public class Parser {
      *
      * @param text String that is inputted by the user to be parsed
      */
-    public void parse(String text) {
+    public String parse(String text) {
         Task.setSystemOn();
         try {
             String[] inputArray = text.split(" ", 2);
-            switch (inputArray[0]) {
+            this.commandType = inputArray[0];
+            switch (commandType) {
             case "": {
                 throw new ChatbotException("Please enter something.");
             }
 
             case "list": {
-                tasks.display();
-                break;
+                return tasks.display();
             }
 
             case "mark": {
-                tasks.mark(Integer.parseInt(inputArray[1]) - 1);
-                break;
+                return tasks.mark(Integer.parseInt(inputArray[1]) - 1);
             }
 
             case "unmark": {
-                tasks.unmark(Integer.parseInt(inputArray[1]) - 1);
-                break;
+                return tasks.unmark(Integer.parseInt(inputArray[1]) - 1);
             }
 
             case "delete": {
-                tasks.delete(Integer.parseInt(inputArray[1]) - 1);
-                break;
+                return tasks.delete(Integer.parseInt(inputArray[1]) - 1);
             }
 
             case "todo": {
                 if (inputArray.length == 1) {
                     throw new ChatbotException("Sorry, the description of a todo cannot be empty.");
                 } else {
-                    tasks.add(new ToDoTask(inputArray[1]));
-                    break;
+                    return tasks.add(new ToDoTask(inputArray[1]));
                 }
             }
 
@@ -82,8 +79,7 @@ public class Parser {
                     } else {
                         String description = substring[0];
                         String date = substring[1];
-                        tasks.add(new DeadlineTask(description, date));
-                        break;
+                        return tasks.add(new DeadlineTask(description, date));
                     }
 
                 }
@@ -101,8 +97,7 @@ public class Parser {
                         String description = substring[0];
                         String start = substring[1].substring(5);
                         String end = substring[2].substring(3);
-                        tasks.add(new EventTask(description, start, end));
-                        break;
+                        return tasks.add(new EventTask(description, start, end));
                     }
 
                 }
@@ -114,18 +109,26 @@ public class Parser {
                     throw new ChatbotException("Please enter a keyword to search for.");
                 } else {
                     String keyword = text.substring(5);
-                    tasks.findTasks(keyword);
+                    return tasks.findTasks(keyword);
                 }
-                break;
-
             }
 
             default:
                 throw new ChatbotException("I'm afraid I do not understand what that means.");
             }
         } catch (ChatbotException e) {
-            System.out.println(e);
+            return e.getMessage();
         }
+
+    }
+
+    /**
+     * This method returns the first word from the latest
+     * input that represents the type of command
+     */
+
+    public String getCommandType() {
+        return this.commandType;
     }
 
 

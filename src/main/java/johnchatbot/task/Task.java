@@ -22,21 +22,22 @@ public abstract class Task {
     /**
      * Marks the task as done.
      */
-    public void mark() {
+    public String mark() {
         this.done = true;
         if (systemOn) {
-            System.out.println("Nice! I've marked this Task as done:");
-            System.out.println(this.toString());
+            return("Nice! I've marked this Task as done:\n "
+                    + this.toString());
         }
+        return "";
     }
 
     /**
      * Marks the task as not done.
      */
-    public void unmark() {
+    public String unmark() {
         this.done = false;
-        System.out.println("OK, I've marked this Task as not done yet:");
-        System.out.println(this.toString());
+        return ("OK, I've marked this Task as not done yet:\n"
+        + this.toString());
     }
 
     /**
