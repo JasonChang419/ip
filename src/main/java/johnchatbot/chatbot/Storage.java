@@ -34,6 +34,7 @@ public class Storage {
      */
 
     public String saveToFile(String path) {
+        assert taskList != null : "No task list";
         File save = new File(path);
         try {
             FileWriter writer = new FileWriter(path);
@@ -60,6 +61,7 @@ public class Storage {
      * @param save File object containing the path to the save file
      */
     public String loadFromFile(File save) {
+        assert taskList != null : "No task list";
         if (save.exists()) {
             StringBuilder output = new StringBuilder();
             output.append("Saved list detected.\n"
@@ -69,7 +71,6 @@ public class Storage {
                 while (saveFile.hasNext()) {
                     String[] taskSave = saveFile.nextLine().split(" \\| ");
                     boolean isMarked = Objects.equals(taskSave[1], "1");
-
                     switch (taskSave[0]) {
                     case "T": {
                         assert taskSave.length == 3 : "Failed to load todo task";

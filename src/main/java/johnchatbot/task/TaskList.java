@@ -25,7 +25,7 @@ public class TaskList {
      */
     public String add(Task input) {
         list.add(input);
-        assert  list.contains(input) : "Task was not added successfully";
+        assert list.contains(input) : "Task was not added successfully";
 
         return("Understood. Added the following Task:\n"
                 + "     " + input.toString() + "\n"
