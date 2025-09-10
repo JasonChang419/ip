@@ -132,5 +132,9 @@ public class Parser {
         return this.commandType;
     }
 
+    public void setBye() {
+        this.commandType = "bye";
+    }
+
 
 }

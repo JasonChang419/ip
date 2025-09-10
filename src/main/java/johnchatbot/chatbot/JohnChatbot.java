@@ -29,8 +29,10 @@ public class JohnChatbot {
 
     public String getResponse(String input) {
         if (Objects.equals(input, "bye")) {
+            this.parser.setBye();
+            System.out.println("Checkpoint");
             String saveMessage  = storage.saveToFile("save/save.txt");
-           assert Objects.equals(saveMessage, "Save complete") : "Save failed";
+            assert Objects.equals(saveMessage, "Save complete") : "Save failed";
             return(saveMessage + " \n" + GOODBYE_MESSAGE);
         }
         return parser.parse(input);
