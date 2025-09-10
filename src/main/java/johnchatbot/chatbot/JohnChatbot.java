@@ -16,13 +16,11 @@ public class JohnChatbot {
     static final String GOODBYE_MESSAGE = "Farewell. I look forward to our next meeting.";
     TaskList tasks;
     Storage storage;
-    Ui ui;
     Parser parser;
 
     public JohnChatbot() {
         this.tasks = new TaskList();
         this.storage = new Storage(tasks);
-        this.ui = new Ui(tasks, storage);
         storage.loadFromFile(new File("save/save.txt"));
         Task.setSystemOn();
         this.parser = new Parser(tasks);
@@ -32,6 +30,7 @@ public class JohnChatbot {
     public String getResponse(String input) {
         if (Objects.equals(input, "bye")) {
             String saveMessage  = storage.saveToFile("save/save.txt");
+           assert Objects.equals(saveMessage, "Save complete") : "Save failed";
             return(saveMessage + " \n" + GOODBYE_MESSAGE);
         }
         return parser.parse(input);

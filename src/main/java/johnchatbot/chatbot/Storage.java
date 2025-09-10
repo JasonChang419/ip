@@ -72,17 +72,20 @@ public class Storage {
 
                     switch (taskSave[0]) {
                     case "T": {
+                        assert taskSave.length == 3 : "Failed to load todo task";
                         String desc = taskSave[2];
                         taskList.silentAdd(new ToDoTask(desc));
                         break;
                     }
                     case "D": {
+                        assert taskSave.length == 4 : "Failed to load deadline task";
                         String desc = taskSave[2];
                         String deadline = taskSave[3];
                         taskList.silentAdd(new DeadlineTask(desc, deadline));
                         break;
                     }
                     case "E": {
+                        assert taskSave.length == 5 : "Failed to load event task";
                         String desc = taskSave[2];
                         String start = taskSave[3];
                         String end = taskSave[4];
@@ -94,6 +97,8 @@ public class Storage {
 
                     if (isMarked) {
                         Task[] taskArray = taskList.toArray();
+                        assert taskArray != null && taskArray instanceof Task[]
+                                : "Task List not converted to array";
                         taskArray[taskList.size() - 1].mark();
                     }
                 }
