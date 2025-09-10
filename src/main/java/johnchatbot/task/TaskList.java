@@ -117,21 +117,25 @@ public class TaskList {
     public String findTasks(String keyword) {
         StringBuilder output = new StringBuilder();
         output.append("Here are the tasks that contain that keyword: \n");
-        int count = 0;
+        return iterateList(output, keyword);
+    }
+
+    private String iterateList(StringBuilder output, String keyword) {
+        boolean isEmpty = true;
         for (int i = 0; i < list.size(); i++) {
             Task current = list.get(i);
             String name = current.getName();
             if (name.contains(keyword)) {
                 output.append((i + 1)).append(". ").append(current.toString()).append("\n");
-                count++;
+                isEmpty = false;
             }
         }
-        if (count == 0) {
-            output.append("Unfortunately, there are no tasks "
-                    + "that contain that keyword.");
+        if (isEmpty) {
+            output.append("Unfortunately, there are no tasks that contain that keyword.");
         }
         return output.toString();
     }
+
 
 
 }

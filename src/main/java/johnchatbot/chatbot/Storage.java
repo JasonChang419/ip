@@ -60,49 +60,57 @@ public class Storage {
      * @param save File object containing the path to the save file
      */
     public String loadFromFile(File save) {
-        if (save.exists()) {
-            StringBuilder output = new StringBuilder();
-            output.append("Saved list detected.\n"
-                    + "Loading from save." + System.lineSeparator());
-            try {
-                Scanner saveFile = new Scanner(save);
-                while (saveFile.hasNext()) {
-                    String[] taskSave = saveFile.nextLine().split(" \\| ");
-                    boolean isMarked = Objects.equals(taskSave[1], "1");
-
-                    switch (taskSave[0]) {
-                    case "T": {
-                        String desc = taskSave[2];
-                        taskList.silentAdd(new ToDoTask(desc));
-                        break;
-                    }
-                    case "D": {
-                        String desc = taskSave[2];
-                        String deadline = taskSave[3];
-                        taskList.silentAdd(new DeadlineTask(desc, deadline));
-                        break;
-                    }
-                    case "E": {
-                        String desc = taskSave[2];
-                        String start = taskSave[3];
-                        String end = taskSave[4];
-                        taskList.silentAdd(new EventTask(desc, start, end));
-                        break;
-                    }
-                    default:
-                    }
-
-                    if (isMarked) {
-                        Task[] taskArray = taskList.toArray();
-                        taskArray[taskList.size() - 1].mark();
-                    }
-                }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            return output.toString();
+        if (!save.exists()) {
+            return "";
         }
-        return "";
+        StringBuilder output = new StringBuilder();
+        output.append("Saved list detected.\n"
+                + "Loading from save." + System.lineSeparator());
+        try {
+            Scanner saveFile = new Scanner(save);
+            iterateLoad(saveFile);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return output.toString();
+    }
+
+    private void iterateLoad(Scanner saveFile) {
+        while (saveFile.hasNext()) {
+            String[] taskSave = saveFile.nextLine().split(" \\| ");
+            boolean isMarked = Objects.equals(taskSave[1], "1");
+            addTask(taskSave);
+            if (isMarked) {
+                Task[] taskArray = taskList.toArray();
+                taskArray[taskList.size() - 1].mark();
+            }
+        }
+    }
+
+    private void addTask(String[] taskSave) {
+        switch (taskSave[0]) {
+        case "T": {
+            String desc = taskSave[2];
+            taskList.silentAdd(new ToDoTask(desc));
+            break;
+        }
+        case "D": {
+            String desc = taskSave[2];
+            String deadline = taskSave[3];
+            taskList.silentAdd(new DeadlineTask(desc, deadline));
+            break;
+        }
+        case "E": {
+            String desc = taskSave[2];
+            String start = taskSave[3];
+            String end = taskSave[4];
+            taskList.silentAdd(new EventTask(desc, start, end));
+            break;
+        }
+        default:
+            throw new IllegalArgumentException("Unrecognized task type: " + taskSave[0]);
+        }
     }
 
 }

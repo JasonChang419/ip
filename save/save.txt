@@ -4,4 +4,4 @@ E | 1 | happening thing  | 2019-09-11T18:30 | 2019-09-12T00:00
 E | 1 | happening thing 2  | 2025-08-29T11:30 | 2025-08-29T13:00
 T | 0 | another thing 2
 E | 0 | party  | 2019-09-22T10:00 | 2019-09-22T14:00
-T | 0 | 1234
+D | 0 | return book  | 2019-09-11
