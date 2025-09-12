@@ -36,6 +36,10 @@
     -fx-background-color: burlywood;
 }
 
+.help-label {
+    -fx-background-color: beige;
+}
+
 #displayPicture {
     /* Shadow effect on image. */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);

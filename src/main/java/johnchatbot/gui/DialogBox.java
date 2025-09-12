@@ -79,6 +79,9 @@ public class DialogBox extends HBox {
         case "bye":
             dialog.getStyleClass().add("bye-label");
             break;
+        case "help":
+            dialog.getStyleClass().add("help-label");
+            break;
         default:
             // Do nothing
         }

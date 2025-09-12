@@ -12,6 +12,18 @@ import johnchatbot.task.ToDoTask;
  * inputs from the user to carry out various commands
  */
 public class Parser {
+    static final String helpMessage = "Hello. This is John Chatbot, the task manager chatbot.\n"
+            + "I currently support the following tasks:\n"
+            + "-todo {description}: adds a task with a brief description/name\n"
+            + "-deadline {/by YYYY-MM-DD}: adds a task with a dated deadline\n"
+            + "-event {/from YYYY-MM-DD HHmm /to YYYY-MM-DD HHmm}: adds a task with"
+            + " a starting and ending date and time\n"
+            + "-mark {index}: marks the task at the given index as done\n"
+            + "-unmark {index}: marks the task at the given index as not done\n"
+            + "-delete {index}: removes the task at the given index\n"
+            + "-list: lists all tasks currently on the task list\n"
+            + "-find {keyword}: displays all tasks that contain the specified keyword\n"
+            + "-help: brings up this help message";
     private final TaskList tasks;
     private String commandType;
 
@@ -68,6 +80,9 @@ public class Parser {
             }
             case "find": {
                 return handleFind(inputArray, text);
+            }
+            case "help": {
+                return helpMessage;
             }
             default:
                 throw new ChatbotException("I'm afraid I do not understand what that means.");
@@ -130,9 +145,8 @@ public class Parser {
             String keyword = text.substring(5);
             return tasks.findTasks(keyword);
         }
+    }
     public void setBye() {
         this.commandType = "bye";
     }
-
-
 }
