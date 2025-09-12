@@ -45,82 +45,36 @@ public class Parser {
             case "": {
                 throw new ChatbotException("Please enter something.");
             }
-
             case "list": {
                 return tasks.display();
             }
-
             case "mark": {
                 return tasks.mark(Integer.parseInt(inputArray[1]) - 1);
             }
-
             case "unmark": {
                 return tasks.unmark(Integer.parseInt(inputArray[1]) - 1);
             }
-
             case "delete": {
                 return tasks.delete(Integer.parseInt(inputArray[1]) - 1);
             }
-
             case "todo": {
-                if (inputArray.length == 1) {
-                    throw new ChatbotException("Sorry, the description of a todo cannot be empty.");
-                } else {
-                    return tasks.add(new ToDoTask(inputArray[1]));
-                }
+                return handleTodo(inputArray);
             }
-
             case "deadline": {
-                if (inputArray.length == 1) { //ensure that a description exists
-                    throw new ChatbotException("Sorry, the description of a deadline cannot be empty.");
-                } else {
-                    String[] substring = inputArray[1].split("/by ", 2);
-                    if (substring.length == 1) { //ensure a deadline exists
-                        throw new ChatbotException("Please enter a deadline.");
-                    } else {
-                        String description = substring[0];
-                        String date = substring[1];
-                        return tasks.add(new DeadlineTask(description, date));
-                    }
-
-                }
-
+                return handleDeadline(inputArray);
             }
-
             case "event": {
-                if (inputArray.length == 1) { //ensure that a description exists
-                    throw new ChatbotException("Sorry, the description of an event cannot be empty.");
-                } else {
-                    String[] substring = inputArray[1].split("/", 3);
-                    if (substring.length != 3) { //ensure that both a start and end time exists
-                        throw new ChatbotException("Start or end is missing");
-                    } else {
-                        String description = substring[0];
-                        String start = substring[1].substring(5);
-                        String end = substring[2].substring(3);
-                        return tasks.add(new EventTask(description, start, end));
-                    }
-
-                }
-
+                return handleEvent(inputArray);
             }
-
             case "find": {
-                if (inputArray.length == 1) {
-                    throw new ChatbotException("Please enter a keyword to search for.");
-                } else {
-                    String keyword = text.substring(5);
-                    return tasks.findTasks(keyword);
-                }
+                return handleFind(inputArray, text);
             }
-
             default:
                 throw new ChatbotException("I'm afraid I do not understand what that means.");
             }
         } catch (ChatbotException e) {
             return e.getMessage();
         }
-
     }
 
     /**
@@ -132,6 +86,50 @@ public class Parser {
         return this.commandType;
     }
 
+    private String handleTodo(String[] inputArray) throws ChatbotException {
+        if (inputArray.length == 1) {
+            throw new ChatbotException("Sorry, the description of a todo cannot be empty.");
+        } else {
+            return tasks.add(new ToDoTask(inputArray[1]));
+        }
+    }
+
+    private String handleDeadline(String[] inputArray) throws ChatbotException {
+        if (inputArray.length == 1) { //ensure that a description exists
+            throw new ChatbotException("Sorry, the description of a deadline cannot be empty.");
+        }
+        String[] substring = inputArray[1].split("/by ", 2);
+        if (substring.length == 1) { //ensure a deadline exists
+            throw new ChatbotException("Please enter a deadline.");
+        }
+        String description = substring[0];
+        String date = substring[1];
+        return tasks.add(new DeadlineTask(description, date));
+    }
+
+    private String handleEvent(String[] inputArray) throws ChatbotException {
+        //ensure that a description exists
+        if (inputArray.length == 1) {
+            throw new ChatbotException("Sorry, the description of an event cannot be empty.");
+        }
+        String[] substring = inputArray[1].split("/", 3);
+        //ensure that both a start and end time exists
+        if (substring.length != 3) {
+            throw new ChatbotException("Start or end is missing");
+        }
+        String description = substring[0];
+        String start = substring[1].substring(5);
+        String end = substring[2].substring(3);
+        return tasks.add(new EventTask(description, start, end));
+    }
+
+    private String handleFind(String[] inputArray, String text) throws ChatbotException {
+        if (inputArray.length == 1) {
+            throw new ChatbotException("Please enter a keyword to search for.");
+        } else {
+            String keyword = text.substring(5);
+            return tasks.findTasks(keyword);
+        }
     public void setBye() {
         this.commandType = "bye";
     }
