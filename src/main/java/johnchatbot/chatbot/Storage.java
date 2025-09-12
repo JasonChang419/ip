@@ -34,6 +34,8 @@ public class Storage {
      */
 
     public String saveToFile(String path) {
+        assert taskList != null : "No task list";
+        File save = new File(path);
         try {
             FileWriter writer = new FileWriter(path);
             writeTasks(writer);
@@ -107,5 +109,4 @@ public class Storage {
             throw new IllegalArgumentException("Unrecognized task type: " + taskSave[0]);
         }
     }
-
 }

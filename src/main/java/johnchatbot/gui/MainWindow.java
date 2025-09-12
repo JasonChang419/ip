@@ -57,6 +57,7 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = johnChatbot.getResponse(input);
         String commandType = johnChatbot.getCommandType();
+        assert commandType != null : "No command type given";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage, commandType)

@@ -37,6 +37,7 @@ public class Parser {
      */
     public String parse(String text) {
         Task.setSystemOn();
+        assert this.tasks != null : "Task List must be initialized";
         try {
             String[] inputArray = text.split(" ", 2);
             this.commandType = inputArray[0];
@@ -129,6 +130,8 @@ public class Parser {
             String keyword = text.substring(5);
             return tasks.findTasks(keyword);
         }
+    public void setBye() {
+        this.commandType = "bye";
     }
 
 

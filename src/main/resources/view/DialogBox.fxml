@@ -15,7 +15,7 @@
       <VBox alignment="CENTER">
          <children>
               <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
-             <Label fx:id="name" text="John Chatbot" visible="false">
+              <Label fx:id="name" text="John Chatbot" visible="false">
                <padding>
                   <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                </padding></Label>
