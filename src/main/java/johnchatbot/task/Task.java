@@ -28,6 +28,7 @@ public abstract class Task {
             return("Nice! I've marked this Task as done:\n "
                     + this.toString());
         }
+        assert this.done : "Task not marked successfully";
         return "";
     }
 
@@ -36,6 +37,7 @@ public abstract class Task {
      */
     public String unmark() {
         this.done = false;
+        assert !this.done : "Task not unmarked successfully";
         return ("OK, I've marked this Task as not done yet:\n"
         + this.toString());
     }
