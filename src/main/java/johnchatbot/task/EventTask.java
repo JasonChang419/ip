@@ -17,7 +17,7 @@ public class EventTask extends Task {
      * @param name Description or name of the task
      * @param start When the event is to start, should be in
      *                 the form YYYY-MM-DD HHmm.
-     * @param end When the evend is to end, should be in
+     * @param end When the event is to end, should be in
      *            the form YYYY-MM-DD HHmm.
      */
     public EventTask(String name, String start, String end) {

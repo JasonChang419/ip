@@ -34,22 +34,21 @@ public class Storage {
      */
 
     public String saveToFile(String path) {
-        File save = new File(path);
         try {
             FileWriter writer = new FileWriter(path);
-            if (!save.exists()) {
-                save.createNewFile();
-                return ("Creating new save.");
-            }
-            for (Task task : taskList.toArray()) {
-                writer.write(task.toSave()
-                        + System.lineSeparator());
-            }
+            writeTasks(writer);
             writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return("Save complete");
+    }
+
+    private void writeTasks(FileWriter writer) throws IOException {
+        for (Task task : taskList.toArray()) {
+            writer.write(task.toSave()
+                    + System.lineSeparator());
+        }
     }
 
 
@@ -59,13 +58,10 @@ public class Storage {
      *
      * @param save File object containing the path to the save file
      */
-    public String loadFromFile(File save) {
+    public void loadFromFile(File save) {
         if (!save.exists()) {
-            return "";
+            return;
         }
-        StringBuilder output = new StringBuilder();
-        output.append("Saved list detected.\n"
-                + "Loading from save." + System.lineSeparator());
         try {
             Scanner saveFile = new Scanner(save);
             iterateLoad(saveFile);
@@ -73,7 +69,6 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return output.toString();
     }
 
     private void iterateLoad(Scanner saveFile) {

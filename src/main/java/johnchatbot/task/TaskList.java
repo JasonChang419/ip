@@ -116,12 +116,12 @@ public class TaskList {
      */
     public String findTasks(String keyword) {
         StringBuilder output = new StringBuilder();
-        output.append("Here are the tasks that contain that keyword: \n");
         return iterateList(output, keyword);
     }
 
     private String iterateList(StringBuilder output, String keyword) {
         boolean isEmpty = true;
+        output.append("Here are the tasks that contain that keyword: \n");
         for (int i = 0; i < list.size(); i++) {
             Task current = list.get(i);
             String name = current.getName();
