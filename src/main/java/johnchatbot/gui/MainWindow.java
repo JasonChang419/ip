@@ -62,7 +62,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage, commandType)
         );
-        if (Objects.equals(input, "bye")) {
+        if (input.trim().equalsIgnoreCase("bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(2)); // 5-second pause
             delay.setOnFinished(event -> Platform.exit());
             delay.play();

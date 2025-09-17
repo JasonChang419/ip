@@ -21,8 +21,11 @@ public class TaskList {
 
     /**
      * Adds a task to the task list and displays current no. of tasks.
+     *
      * @param input Task to be added.
+     * @return Confirmation message with task details and list size.
      */
+
     public String add(Task input) {
         list.add(input);
         assert list.contains(input) : "Task was not added successfully";
@@ -34,7 +37,9 @@ public class TaskList {
 
     /**
      * Adds a task to the task list without printing any messages.
+     *
      * @param input Task to be added.
+     * @return Empty string.
      */
     public String silentAdd(Task input) {
         list.add(input);
@@ -43,6 +48,8 @@ public class TaskList {
 
     /**
      * Returns the task list as an array of tasks.
+     *
+     * @return Current task list as an array.
      */
     public Task[] toArray() {
         return (this.list.toArray(new Task[this.list.size()]));
@@ -50,6 +57,8 @@ public class TaskList {
 
     /**
      * Returns the number of tasks in the list.
+     *
+     * @return Size of task list as an integer.
      */
     public int size() {
         return list.size();
@@ -58,6 +67,7 @@ public class TaskList {
     /**
      * Removes the task at the specified index.
      * @param index Index of task to be deleted.
+     * @return Confirmation message with task details and list size.
      */
     public String delete(int index) {
         Task removed = list.get(index);
@@ -71,6 +81,8 @@ public class TaskList {
     /**
      * Displays every task currently on the list
      * in accordance with its string representation.
+     *
+     * @return String representing list of all tasks in task list.
      */
     public String display() {
         StringBuilder output = new StringBuilder();
@@ -82,7 +94,9 @@ public class TaskList {
 
     /**
      * Marks the task at the given index as done.
+     *
      * @param index Index of task to be marked.
+     * @return Confirmation message with task details.
      */
     public String mark(int index) throws ChatbotException {
         if (index >= list.size() || index < 0) {
@@ -94,7 +108,9 @@ public class TaskList {
 
     /**
      * Marks the task at the given index as not done.
+     *
      * @param index Index of task to be unmarked.
+     * @return Confirmation message with task details
      */
     public String unmark(int index) throws ChatbotException {
         if (index >= list.size() || index < 0) {
@@ -106,7 +122,9 @@ public class TaskList {
 
     /**
      * Returns the task at the given index.
+     *
      * @param index Index of task to be retrieved.
+     * @return Task at the given index.
      */
     public Task getTask(int index) {
         return this.list.get(index);
@@ -116,6 +134,7 @@ public class TaskList {
      * Searches the task list for all tasks that contain
      * the specified keyword.
      * @param keyword Keyword to search for in task names.
+     * @return list of all tasks that contain the given keyword
      */
     public String findTasks(String keyword) {
         StringBuilder output = new StringBuilder();

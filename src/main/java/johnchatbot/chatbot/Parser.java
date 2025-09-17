@@ -12,8 +12,8 @@ import johnchatbot.task.ToDoTask;
  * inputs from the user to carry out various commands
  */
 public class Parser {
-    static final String helpMessage = "Hello. This is John Chatbot, the task manager chatbot.\n"
-            + "I currently support the following tasks:\n"
+    static final String HELP_MESSAGE = "Hello. This is John Chatbot, the task manager chatbot.\n"
+            + " I currently support the following tasks:\n"
             + "-todo {description}: adds a task with a brief description/name\n"
             + "-deadline {/by YYYY-MM-DD}: adds a task with a dated deadline\n"
             + "-event {/from YYYY-MM-DD HHmm /to YYYY-MM-DD HHmm}: adds a task with"
@@ -46,8 +46,10 @@ public class Parser {
      * -find {keyword}: displays all tasks that contain the specified keyword
      *
      * @param text String that is inputted by the user to be parsed
+     * @return A String response
      */
     public String parse(String text) {
+        //mark, unmark, and delete error handling suggested by ChatGPT
         Task.setSystemOn();
         assert this.tasks != null : "Task List must be initialized";
         try {
@@ -61,12 +63,21 @@ public class Parser {
                 return tasks.display();
             }
             case "mark": {
+                if (inputArray.length < 2) {
+                    throw new ChatbotException("Please specify the task index.");
+                }
                 return tasks.mark(Integer.parseInt(inputArray[1]) - 1);
             }
             case "unmark": {
+                if (inputArray.length < 2) {
+                    throw new ChatbotException("Please specify the task index.");
+                }
                 return tasks.unmark(Integer.parseInt(inputArray[1]) - 1);
             }
             case "delete": {
+                if (inputArray.length < 2) {
+                    throw new ChatbotException("Please specify the task index.");
+                }
                 return tasks.delete(Integer.parseInt(inputArray[1]) - 1);
             }
             case "todo": {
@@ -82,7 +93,7 @@ public class Parser {
                 return handleFind(inputArray, text);
             }
             case "help": {
-                return helpMessage;
+                return HELP_MESSAGE;
             }
             default:
                 throw new ChatbotException("I'm afraid I do not understand what that means.");
@@ -95,6 +106,8 @@ public class Parser {
     /**
      * This method returns the first word from the latest
      * input that represents the type of command
+     *
+     * @return Command type
      */
 
     public String getCommandType() {

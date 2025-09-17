@@ -25,7 +25,7 @@ public class Storage {
     }
 
     /**
-     * Method for saving the current list of tasks to the specified
+     * Saves the current list of tasks to the specified
      * path. The method will attempt to save the task list to the
      * file specified by the path, or it will create a new file
      * if it does not already exist.
@@ -35,7 +35,6 @@ public class Storage {
 
     public String saveToFile(String path) {
         assert taskList != null : "No task list";
-        File save = new File(path);
         try {
             FileWriter writer = new FileWriter(path);
             writeTasks(writer);
@@ -55,7 +54,7 @@ public class Storage {
 
 
     /**
-     * Method for loading from a save file.
+     * Loads from a save file.
      * If a save file does not exist, it does nothing.
      *
      * @param save File object containing the path to the save file

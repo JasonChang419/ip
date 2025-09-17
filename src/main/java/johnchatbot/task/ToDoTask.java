@@ -17,6 +17,8 @@ public class ToDoTask extends Task {
     /**
      * Provides a string representation of the task
      * that is specific to a to do task.
+     *
+     * @return String representation of task
      */
     @Override
     public String toString() {
@@ -27,6 +29,8 @@ public class ToDoTask extends Task {
      * Provides a string representation of the task
      * when saving to a file that is specific to a
      * to do task.
+     *
+     * @return String representation of task save format.
      */
     @Override
     public String toSave() {
