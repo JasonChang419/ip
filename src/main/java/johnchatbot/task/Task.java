@@ -28,7 +28,7 @@ public abstract class Task {
     public String mark() {
         this.isDone = true;
         if (systemIsOn) {
-            return("Nice! I've marked this Task as done:\n "
+            return ("Nice! I've marked this Task as done:\n "
                     + this.toString());
         }
         assert this.isDone : "Task not marked successfully";
@@ -44,7 +44,7 @@ public abstract class Task {
         this.isDone = false;
         assert !this.isDone : "Task not unmarked successfully";
         return ("OK, I've marked this Task as not done yet:\n"
-        + this.toString());
+                + this.toString());
     }
 
     /**
@@ -71,7 +71,7 @@ public abstract class Task {
     }
 
     /**
-     *Enables output from task operations after
+     * Enables output from task operations after
      * loading of tasks into TaskList
      */
     public static void setSystemOn() {

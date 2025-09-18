@@ -30,7 +30,7 @@ public class TaskList {
         list.add(input);
         assert list.contains(input) : "Task was not added successfully";
 
-        return("Understood. Added the following Task:\n"
+        return ("Understood. Added the following Task:\n"
                 + "     " + input.toString() + "\n"
                 + "There are " + list.size() + " items on the list.");
     }
@@ -73,7 +73,7 @@ public class TaskList {
         Task removed = list.get(index);
         list.remove(index);
         assert !list.contains(removed) : "Task was not deleted successfully";
-        return("Understood. Removed the following Task:\n"
+        return ("Understood. Removed the following Task:\n"
                 + "     " + removed.toString() + "\n"
                 + "There are now " + list.size() + " items on the list.");
     }

@@ -15,12 +15,15 @@ public class JohnChatbot {
     static final String GOODBYE_MESSAGE = "Farewell. I look forward to our next meeting.";
     //save file path as a constant suggested by ChatGPT
     static final String SAVE_FILE_PATH = "save/save.txt";
-    TaskList tasks;
-    Storage storage;
-    Parser parser;
+    private final Storage storage;
+    private final Parser parser;
 
+    /**
+     * Creates an object representing the core
+     * components of the chatbot
+     */
     public JohnChatbot() {
-        this.tasks = new TaskList();
+        TaskList tasks = new TaskList();
         this.storage = new Storage(tasks);
         storage.loadFromFile(new File(SAVE_FILE_PATH));
         Task.setSystemOn();
@@ -40,9 +43,9 @@ public class JohnChatbot {
         //case insensitivity suggested by ChatGPT
         if (input.trim().equalsIgnoreCase("bye")) {
             this.parser.setBye();
-            String saveMessage  = storage.saveToFile(SAVE_FILE_PATH);
+            String saveMessage = storage.saveToFile(SAVE_FILE_PATH);
             assert Objects.equals(saveMessage, "Save complete") : "Save failed";
-            return(saveMessage + " \n" + GOODBYE_MESSAGE);
+            return (saveMessage + " \n" + GOODBYE_MESSAGE);
         }
         return parser.parse(input);
     }
