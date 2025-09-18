@@ -23,7 +23,8 @@ public class Parser {
             + "-delete {index}: removes the task at the given index\n"
             + "-list: lists all tasks currently on the task list\n"
             + "-find {keyword}: displays all tasks that contain the specified keyword\n"
-            + "-help: brings up this help message";
+            + "-help: brings up this help message"
+            + "-bye: closes the chatbot";
     private final TaskList tasks;
     private String commandType;
 
