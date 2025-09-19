@@ -146,8 +146,8 @@ public class TaskList {
         output.append("Here are the tasks that contain that keyword: \n");
         for (int i = 0; i < list.size(); i++) {
             Task current = list.get(i);
-            String name = current.getName();
-            if (name.contains(keyword)) {
+            String name = current.getName().toLowerCase();
+            if (name.contains(keyword.toLowerCase())) {
                 output.append((i + 1)).append(". ").append(current.toString()).append("\n");
                 isEmpty = false;
             }
