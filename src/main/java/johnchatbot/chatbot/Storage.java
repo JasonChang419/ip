@@ -36,6 +36,11 @@ public class Storage {
     public String saveToFile(String path) {
         assert taskList != null : "No task list";
         try {
+            File file = new File(path);
+            File parentDir = file.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs();
+            }
             FileWriter writer = new FileWriter(path);
             writeTasks(writer);
             writer.close();

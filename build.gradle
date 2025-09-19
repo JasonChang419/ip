@@ -51,7 +51,7 @@ shadowJar {
     archiveBaseName = "johnchatbot"
     archiveClassifier = null
     archiveFileName = "johnchatbot.jar"
-    destinationDirectory = file(".");
+    destinationDirectory = file("build/libs");
 }
 
 run{
